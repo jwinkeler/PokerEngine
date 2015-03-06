@@ -18,22 +18,27 @@ public class Hand {
 	public ArrayList <Card> getCards(){
 		return this.hand;
 	}
-	public ArrayList<Card> sort(ArrayList<Card> cards) {
-		int i = 0;
-		while(i < 4) {
-			Card c1 = cards.get(i);
-			Card c2 = cards.get(i+1);
-			eCardValue v1 = c1.getValue();
-			eCardValue v2 = c2.getValue();
-			Card temp = c1;
-			if(v1.getCardValue() > v2.getCardValue()) {
-				c1 = c2;
-				c2 = temp;
-			}
-			i++;
-		}
-		return cards;
-	}
+    public ArrayList<Card> sort(ArrayList<Card> myHand) {
+        int i = 0;
+        while (i < 4) {
+            Card small = myHand.get(i);
+            eCardValue smallv = small.getValue();
+            int j = 0;
+            while ((j >= i) && (j < 4)) {
+                Card c1 = myHand.get(j);
+                eCardValue v1 = c1.getValue();
+                Card temp = small;
+                if (smallv.getCardValue() > v1.getCardValue()) {
+                    small = c1;
+                    c1 = temp;
+                }
+                j++;
+            }
+            i++;
+        }
+
+        return myHand;
+    }
 	public boolean isRoyalFlush(){
 		return isRoyalFlush(this);
 	}
